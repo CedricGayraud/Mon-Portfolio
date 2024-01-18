@@ -1,19 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Project from "./components/Projects";
+import { ProjectForm, ProjectList } from "./components/Projects";
+import { CategoryForm } from "./components/categories";
+import { LanguageForm, LanguageList } from "./components/languages";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 function App() {
   return (
-    <Project />
-    /*
-    <Router>
-      <Routes>
-         <Route>
-        </Route>
-      </Routes>
-       
-    </Router>
-    */
+    <div>
+      <Navbar />
+      <ProjectForm />
+      <CategoryForm />
+      <LanguageForm />
+      <ProjectList />
+      <LanguageList />
+      <Footer />
+    </div>
   );
 }
 

@@ -12,9 +12,13 @@ class Project extends Model
     protected $fillable = [
         'site_name',
         'site_desc',
-        'object',
-        'collaboratos',
+        'collaborators',
         'id_category',
         'project_date',
     ];
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class, 'projectLanguage', 'project_id', 'language_id');
+    }
 }

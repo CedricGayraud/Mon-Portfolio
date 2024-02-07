@@ -59,6 +59,7 @@ class ProjectController extends Controller
                 'id_category' => 'required|exists:category,id', // Assurez-vous que la valeur existe dans la table categories
                 'project_date' => 'required|date',
                 'languages_id' => 'required|array', // Validation pour les langages, qui doit être un tableau
+                
             ]);
     
             // Création du projet

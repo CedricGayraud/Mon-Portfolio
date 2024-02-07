@@ -1,21 +1,19 @@
 import React from "react";
-import { ProjectForm, ProjectList } from "./components/Projects";
-import { CategoryForm } from "./components/categories";
-import { LanguageForm, LanguageList } from "./components/languages";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminIndex from "./components/admin/adminIndex";
+import FrontIndex from "./components/front";
+import LoginForm from "./components/admin/login";
 function App() {
   return (
-    <div>
-      <Navbar />
-      <ProjectForm />
-      <CategoryForm />
-      <LanguageForm />
-      <ProjectList />
-      <LanguageList />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<FrontIndex />} />
+          <Route path="/admin/" element={<AdminIndex />} />
+          <Route path="/login/" element={<LoginForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

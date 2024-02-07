@@ -1,30 +1,35 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Fragment, useState, useEffect } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MdClose, MdMenu } from "react-icons/md";
-import tabs from '../data/navbar';
+import tabs from "../data/navbar";
+import { Link } from "react-router-dom";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 function Navbar() {
-  const tabsDesktop = tabs.map( (tab) => {
+  const token = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState(!!token);
+  const tabsDesktop = tabs.map((tab) => {
     return (
       <div key={tab.id}>
-        <a href={tab.link} className={tab.desktopCss}>{tab.label}</a>
+        <a href={tab.link} className={tab.desktopCss}>
+          {tab.label}
+        </a>
       </div>
-    )
-  }
-  );
+    );
+  });
 
-  const tabsMobile = tabs.map( (tab) => {
+  const tabsMobile = tabs.map((tab) => {
     return (
       <div key={tab.id}>
-        <Disclosure.Button href={tab.link} className={tab.mobileCss}>{tab.label}</Disclosure.Button>
+        <Disclosure.Button href={tab.link} className={tab.mobileCss}>
+          {tab.label}
+        </Disclosure.Button>
       </div>
-    )
-  }
-  );
+    );
+  });
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -40,13 +45,18 @@ function Navbar() {
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {tabsDesktop}
-                  </div>
+                  <div className="flex space-x-4">{tabsDesktop}</div>
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center">
+                  {isLoggedIn ? (
+                    <div className="text-white">
+                      Bienvenue, [Nom de l'utilisateur]
+                    </div>
+                  ) : (
+                    <div className="text-white">Vous n'êtes pas connecté</div>
+                  )}
                   <button
                     type="button"
                     className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -122,9 +132,9 @@ function Navbar() {
                 </div>
               </div>
 
-                {/* Mobile menu  */}
+              {/* Mobile menu  */}
 
-               <div className="-mr-2 flex sm:hidden">
+              <div className="-mr-2 flex sm:hidden">
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -134,22 +144,21 @@ function Navbar() {
                     <MdMenu className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
-              </div> 
+              </div>
             </div>
           </div>
 
-           <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
               {tabsMobile}
             </div>
-            <div className="border-t border-gray-700 pb-3 pt-4">
-            </div>
-          </Disclosure.Panel> 
+            <div className="border-t border-gray-700 pb-3 pt-4"></div>
+          </Disclosure.Panel>
         </>
       )}
     </Disclosure>
-  )
+  );
 }
 
 export default Navbar;

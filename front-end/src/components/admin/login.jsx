@@ -1,59 +1,36 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
+import NavbarLogged from "../navbarLogged";
 import Footer from "../footer";
-import { Link, useNavigate } from "react-router-dom";
+import AuthUser from "../../api/AuthUser";
 
 const LoginForm = () => {
-  const http = axios.create({
-    baseURL: "http://127.0.0.1:8000/",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-    withCredentials: true,
-  });
+  const { getToken } = AuthUser();
+  const { http, setToken } = AuthUser();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  async function getUser() {
-    const csrf = await http.get("/sanctum/csrf-cookie");
-    console.log("csrf =", csrf);
-
-    const login = await http.post("/api/login", {
-      email: "gayraud854@gmail.com",
-      password: "secret",
-    });
-    console.log("login =", login);
-  }
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    //console.log("email :", e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    //console.log("mot de passe :", e.target.value);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://127.0.0.1:8000/api/login", { email, password });
-      setEmail("");
-      setPassword("");
-      navigate("/");
-    } catch (e) {
-      console.log(e);
-    }
+  const handleLogin = () => {
+    http.post("/login", { email: email, password: password }).then((res) => {
+      setToken(res.data.user, res.data.access_token);
+      console.log(res.data);
+    });
   };
 
   return (
     <div>
-      <Navbar />
+      <NavbarLogged />
       <div className="max-w-md mx-auto mt-8 p-4 bg-white shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <form onSubmit={handleLogin}>

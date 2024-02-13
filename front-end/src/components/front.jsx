@@ -1,14 +1,12 @@
-import React from "react";
-import Navbar from "./navbar";
+import Auth from "../navbar/auth";
+import Guest from "../navbar/guest";
 import Footer from "./footer";
 import { ProjectList } from "./Projects";
 import { LanguageList } from "./languages";
 import ContactForm from "./contactForm";
-
 function FrontIndex() {
   return (
     <div>
-      <Navbar />
       <ProjectList />
       <LanguageList />
       <ContactForm />

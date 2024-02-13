@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Select, { components } from "react-select";
 import makeAnimated from "react-select/animated";
 import colourOptions from "../data/data";
@@ -17,11 +17,11 @@ const ProjectForm = () => {
     site_name: "",
     site_desc: "",
     project_date: "",
-    id_category: "",
     collaborators: "",
     file: "",
+    id_category: "",
   });
-
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -47,10 +47,18 @@ const ProjectForm = () => {
   }, []);
 
   const handleInput = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "file") {
+      setFormData({
+        ...formData,
+        file: e.target.files[0],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    }
+    console.log("formdata :", formData);
   };
 
   const handleSelectCategory = (selectedOption) => {
@@ -67,10 +75,28 @@ const ProjectForm = () => {
 
   const saveProject = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://127.0.0.1:8000/api/add-project", {
-      ...formData,
-      languages_id: selectedLanguages,
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("site_name", formData.site_name);
+    formDataToSend.append("site_desc", formData.site_desc);
+    formDataToSend.append("project_date", formData.project_date);
+    formDataToSend.append("collaborators", formData.collaborators);
+    formDataToSend.append("file", formData.file); // Ajouter uniquement le nom du fichier
+    formDataToSend.append("id_category", formData.id_category);
+    selectedLanguages.forEach((languageId) => {
+      formDataToSend.append("languages_id[]", languageId);
     });
+    console.log(formDataToSend); // Ajoutez cette ligne pour déboguer FormData
+
+    const res = await axios.post(
+      "http://127.0.0.1:8000/api/add-project",
+      formDataToSend,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     if (res.data.status === 200) {
       console.log(res.data.message);
@@ -78,13 +104,17 @@ const ProjectForm = () => {
         site_name: "",
         site_desc: "",
         project_date: "",
-        id_category: "",
         collaborators: "",
         file: "",
+        id_category: "",
       });
       setSelectedLanguages([]);
+      navigate("/");
     } else {
-      console.log("Erreur lors de l'enregistrement du projet");
+      console.log(
+        "Erreur, le projet n'a pas été enregistré, le fichier est peut-être trop lourd",
+        res.data
+      );
     }
   };
 
@@ -102,7 +132,12 @@ const ProjectForm = () => {
 
   return (
     <div>
-      <form className="max-w-md mx-auto mt-6" onSubmit={saveProject}>
+      <form
+        className="max-w-md mx-auto mt-6"
+        onSubmit={saveProject}
+        method="post"
+        encType="multipart/form-data"
+      >
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
@@ -170,7 +205,6 @@ const ProjectForm = () => {
             id="file_input"
             className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             onChange={handleInput}
-            value={formData.file}
             placeholder=" "
             required
           />
@@ -205,7 +239,7 @@ const ProjectForm = () => {
 
           <div className="relative z-0 w-full mb-5 group">
             <div className="mt-2">
-              <label htmlFor="category" className={defaultLabel}>
+              <label htmlFor="Projectlanguages" className={defaultLabel}>
                 Langages
               </label>
 

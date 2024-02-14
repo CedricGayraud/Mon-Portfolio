@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 /* eslint-disable no-unused-vars */
 import React, { Component, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -309,8 +310,8 @@ class ProjectList extends Component {
     }
 
     return (
-      <div>
-        <h1>Projets</h1>
+      <div id="projects" className="text-center">
+        <h1 className="text-center text-4xl">Composant projets</h1>
         {projectsHtml}
       </div>
     );

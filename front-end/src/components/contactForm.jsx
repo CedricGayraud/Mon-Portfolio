@@ -58,7 +58,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div id="contact" className="bg-gray-100">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         <div className="relative bg-white shadow-xl">
           <h2 className="sr-only">Contact us</h2>

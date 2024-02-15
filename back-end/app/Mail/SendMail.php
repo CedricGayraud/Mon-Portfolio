@@ -45,6 +45,8 @@ class SendMail extends Mailable
         );
     }
 
+    
+
     /**
      * Get the attachments for the message.
      *

@@ -9,6 +9,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\LanguageController;
 use App\Http\Controllers\API\ImageController;
 use App\Http\Controllers\MailController;
+use Fruitcake\Cors\HandleCors;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +33,9 @@ Route::post('/add-language', [LanguageController::class, 'store']);
 // Route::post('images', [ImageController::class, 'upload']);
 Route::get('/project-images/{projectId}', [ImageController::class, 'ProjectImages']);
 
-Route::post('send-mail', [MailController::class, 'index']);
+Route::middleware([HandleCors::class])->group(function () {
+    Route::post('send-mail', [MailController::class, 'index']);
+});
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 

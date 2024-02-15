@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -53,7 +54,7 @@ const ContactForm = () => {
         message: "",
       });
     } else {
-      console.log("Le message n'a pas été envoyé");
+      console.log("Le message n'a pas été envoyé", res.data);
     }
   };
 
@@ -166,7 +167,7 @@ const ContactForm = () => {
               >
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="personType"
                     className="block text-sm font-medium text-gray-900"
                   >
                     Vous êtes ?
@@ -174,8 +175,8 @@ const ContactForm = () => {
                   <div className="mt-1">
                     <select
                       type="text"
-                      name="firstname"
-                      id="firstname"
+                      name="personType"
+                      id="personType"
                       value={personType}
                       onChange={handleOnChange}
                       autoComplete="given-name"
@@ -198,7 +199,7 @@ const ContactForm = () => {
                   <div className="sm:col-span-2 flex flex-row">
                     <div className="w-1/2 pr-4">
                       <label
-                        htmlFor="last-name"
+                        htmlFor="lastname"
                         className="block text-sm font-medium text-gray-900"
                       >
                         Nom
@@ -218,7 +219,7 @@ const ContactForm = () => {
                     </div>
                     <div className="w-1/2 pl-4">
                       <label
-                        htmlFor="first-name"
+                        htmlFor="firstname"
                         className="block text-sm font-medium text-gray-900"
                       >
                         Prénom

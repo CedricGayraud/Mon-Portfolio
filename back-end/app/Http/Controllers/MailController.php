@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\SendMail;
 use App\Models\ContactForm;
+use Illuminate\Support\Facades\Log;
 
 class MailController extends Controller
 {
@@ -38,8 +39,20 @@ class MailController extends Controller
         if (isset($formData['enterpriseName'])) {
             $mailData['enterpriseName'] = $formData['enterpriseName'];
         }
-https://blog.logrocket.com/implement-recaptcha-react-application/
+        
         Mail::to('gayraud854@gmail.com')->send(new SendMail($mailData, $formData));
-        dd('le mail a bien ete envoyé');
+
+        // $email = $request->email;
+
+        // try {
+        //     Mail::to('gayraud854@gmail.com')->send(new SendMail($mailData, $formData));
+        //     dd('le mail a bien été envoyé');
+        //     Log::info('Le mail a bien été envoyé');
+        // } catch (\Exception $e) {
+        //     Log::error('Erreur lors de l\'envoi du mail: ' . $e->getMessage());            
+        // }
+        // $senderMessage = "thanks for your message , we will reply you in later";
+        // Mail::to( $email)->send(new SendMessageToEndUser($senderMessage));
+        // return "Mail Send Successfully";
     }
 }

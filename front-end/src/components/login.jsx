@@ -7,13 +7,21 @@ export default function Login() {
   const { http, setToken } = AuthUser();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
 
   const submitForm = () => {
     // api call
-    http.post("/login", { email: email, password: password }).then((res) => {
-      setToken(res.data.user, res.data.access_token);
-      navigate("/admin");
-    });
+    http
+      .post("/login", { email: email, password: password, config })
+      .then((res) => {
+        setToken(res.data.user, res.data.access_token);
+        navigate("/admin");
+      });
   };
 
   return (

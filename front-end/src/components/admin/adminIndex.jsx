@@ -3,7 +3,7 @@ import Footer from "../footer";
 import ProjectForm from "../Projects";
 import { LanguageForm } from "../languages";
 import CategoryForm from "../categories";
-
+import { ToastContainer } from "react-toastify";
 const AdminIndex = () => {
   return (
     <div>
@@ -12,6 +12,7 @@ const AdminIndex = () => {
       <CategoryForm />
       <LanguageForm />
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

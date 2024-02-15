@@ -39,8 +39,10 @@ class MailController extends Controller
         if (isset($formData['enterpriseName'])) {
             $mailData['enterpriseName'] = $formData['enterpriseName'];
         }
-        
+
         Mail::to('gayraud854@gmail.com')->send(new SendMail($mailData, $formData));
+
+        return response()->json(['message' => 'Mail envoyé avec succès'], 200);
 
         // $email = $request->email;
 

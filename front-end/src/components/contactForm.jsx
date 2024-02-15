@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   let [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const ContactForm = () => {
   const [personType, setPersonType] = useState("selectPersonType");
   const [particulierContent, setParticulierContent] = useState(false);
   const [entrepriseContent, setEntrepriseContent] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     personType === "personne"
@@ -42,8 +44,8 @@ const ContactForm = () => {
     const res = await axios.post("http://127.0.0.1:8000/api/send-mail", {
       ...formData,
     });
-    if (res.data.status === 200) {
-      console.log(res.data.message);
+    if (res.status === 200) {
+      console.log("Message :", res.data.message);
       setFormData({
         firstname: "",
         lastname: "",
@@ -53,8 +55,9 @@ const ContactForm = () => {
         subject: "",
         message: "",
       });
+      navigate("/");
     } else {
-      console.log("Le message n'a pas été envoyé", res.data);
+      console.log("Le message n'a pas été envoyé");
     }
   };
 

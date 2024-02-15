@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { notifyError, notifySuccess } from "../data/toats";
 
 function CategoryForm() {
   const [name, setName] = useState("");
@@ -15,6 +16,7 @@ function CategoryForm() {
       if (res.data.status === 200) {
         console.log(res.data.message);
         setName(""); // Réinitialiser le champ name après la soumission réussie
+        notifySuccess();
       }
     } catch (error) {
       if (error.response && error.response.status === 422) {

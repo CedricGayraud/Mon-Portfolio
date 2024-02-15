@@ -4,6 +4,7 @@ import { LanguageList } from "./languages";
 import ContactForm from "./contactForm";
 import About from "./about";
 import Experiences from "./experiences";
+import { ToastContainer } from "react-toastify";
 function FrontIndex() {
   return (
     <div>
@@ -13,6 +14,7 @@ function FrontIndex() {
       <ProjectList />
       <ContactForm />
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

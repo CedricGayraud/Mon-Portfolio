@@ -1,7 +1,6 @@
 import AuthUser from "./components/AuthUser";
 import Guest from "./navbar/guest";
 import Auth from "./navbar/auth";
-
 function App() {
   const { getToken } = AuthUser();
   if (!getToken()) {

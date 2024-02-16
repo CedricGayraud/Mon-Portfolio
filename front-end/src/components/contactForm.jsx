@@ -2,6 +2,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
   let [formData, setFormData] = useState({
@@ -18,7 +19,9 @@ const ContactForm = () => {
   const [particulierContent, setParticulierContent] = useState(false);
   const [entrepriseContent, setEntrepriseContent] = useState(false);
   const navigate = useNavigate();
-
+  function onChange(value) {
+    console.log("Recaptcha validé:");
+  }
   useEffect(() => {
     personType === "personne"
       ? setParticulierContent(true)
@@ -352,6 +355,10 @@ const ContactForm = () => {
                     />
                   </div>
                 </div>
+                <ReCAPTCHA
+                  sitekey="6Ldz_nQpAAAAAJyL3mw4AHA63vEQNlWT-W29HnsU"
+                  onChange={onChange}
+                />
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
                   <button
                     type="submit"

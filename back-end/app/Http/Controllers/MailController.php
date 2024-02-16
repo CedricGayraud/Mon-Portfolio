@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mail;
 use App\Mail\SendMail;
+use App\Mail\SendMailToSender;
 use App\Models\ContactForm;
 use Illuminate\Support\Facades\Log;
 
@@ -25,6 +26,7 @@ class MailController extends Controller
         $contact = new ContactForm($formData);
         $contact->save();
 
+        $email = $request->email;
         $mailData = [
             'title' => $formData['subject'],
             'body' => $formData['message'],
@@ -39,8 +41,13 @@ class MailController extends Controller
         if (isset($formData['enterpriseName'])) {
             $mailData['enterpriseName'] = $formData['enterpriseName'];
         }
+        if (isset($formData['email'])) {
+            $mailData['email'] = $formData['email'];
+        }
 
         Mail::to('gayraud854@gmail.com')->send(new SendMail($mailData, $formData));
+
+        Mail::to($email)->send(new SendMailToSender($mailData, $formData));
 
         return response()->json(['message' => 'Mail envoyé avec succès'], 200);
 

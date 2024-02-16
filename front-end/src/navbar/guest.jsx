@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import FrontIndex from "../components/front";
 import { Disclosure } from "@headlessui/react";
 import { MdClose, MdMenu } from "react-icons/md";
@@ -88,13 +88,6 @@ function Guest() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
-      {/* <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </div> */}
     </>
   );
 }

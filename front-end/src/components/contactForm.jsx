@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -248,6 +248,60 @@ const ContactForm = () => {
 
                 {entrepriseContent && (
                   <div className="sm:col-span-2">
+                    <div className="flex">
+                      <div className="w-1/2 pr-4  flex justify-between">
+                        <label
+                          htmlFor="lastname"
+                          className="block text-sm font-medium text-gray-900"
+                        >
+                          Nom
+                        </label>
+                        <span
+                          id="phone-optional"
+                          className="text-sm text-gray-500"
+                        >
+                          Optionnel
+                        </span>
+                        <div className="mt-1">
+                          <input
+                            type="text"
+                            name="lastname"
+                            id="lastname"
+                            value={formData.lastname}
+                            onChange={handleInput}
+                            required
+                            autoComplete="family-name"
+                            className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-1/2 pl-4 flex justify-between">
+                        <label
+                          htmlFor="firstname"
+                          className="block text-sm font-medium text-gray-900"
+                        >
+                          Prénom
+                        </label>
+                        <span
+                          id="phone-optional"
+                          className="text-sm text-gray-500"
+                        >
+                          Optionnel
+                        </span>
+                        <div className="mt-1">
+                          <input
+                            type="text"
+                            name="firstname"
+                            id="firstname"
+                            value={formData.firstname}
+                            onChange={handleInput}
+                            required
+                            autoComplete="given-name"
+                            className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <label
                       htmlFor="subject"
                       className="block text-sm font-medium text-gray-900"

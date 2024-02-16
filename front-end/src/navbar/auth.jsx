@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import FrontIndex from "../components/front";
 import AdminIndex from "../components/admin/adminIndex";
 import { Disclosure } from "@headlessui/react";
@@ -14,7 +14,7 @@ function Auth() {
   const [userdetail, setUserdetail] = useState("");
   useEffect(() => {
     fetchUserDetail();
-  }, []);
+  });
 
   const fetchUserDetail = () => {
     http.post("/me").then((res) => {
@@ -56,7 +56,7 @@ function Auth() {
   });
 
   const logoutUser = () => {
-    if (token != undefined) {
+    if (token !== undefined) {
       logout();
     }
   };
@@ -68,12 +68,13 @@ function Auth() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
+                  <div className="flex justify-start">
+                    <a href="/" className="text-white px-2">
+                      Accueil
+                    </a>
+                    <a href="/admin" className="text-white">
+                      Admin
+                    </a>
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">{tabsDesktop}</div>
@@ -88,15 +89,15 @@ function Auth() {
                     >
                       <span className="absolute -inset-1.5" />
                     </button>
-                    <li className="nav-item">
+                    <div>
                       <span
                         role="button"
-                        className="nav-link"
+                        className="text-white"
                         onClick={logoutUser}
                       >
                         Logout
                       </span>
-                    </li>
+                    </div>
                   </div>
                 </div>
 

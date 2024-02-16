@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import FrontIndex from "../components/front";
 import { Disclosure } from "@headlessui/react";
@@ -6,10 +7,17 @@ import tabs from "../data/navbar";
 import Login from "../components/login";
 
 function Guest() {
+  const [currentSection, setCurrentSection] = useState("root");
+
   const tabsDesktop = tabs.map((tab) => {
     return (
       <div key={tab.id}>
-        <a href={tab.link} className={tab.desktopCss}>
+        <a
+          href={tab.link}
+          className={`${tab.desktopCss} ${
+            currentSection === tab.id ? "bg-gray-900 text-white" : ""
+          }`}
+        >
           {tab.label}
         </a>
       </div>
@@ -19,28 +27,49 @@ function Guest() {
   const tabsMobile = tabs.map((tab) => {
     return (
       <div key={tab.id}>
-        <Disclosure.Button href={tab.link} className={tab.mobileCss}>
+        <Disclosure.Button
+          href={tab.link}
+          className={`${tab.mobileCss} ${
+            currentSection === tab.id ? "bg-gray-900 text-white" : ""
+          }`}
+        >
           {tab.label}
         </Disclosure.Button>
       </div>
     );
   });
 
+  const handleScroll = () => {
+    const sections = ["about", "exp", "projects", "contact"];
+
+    const currentSection = sections.find((section) => {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top >= 0 && rect.bottom <= window.innerHeight;
+      }
+      return false;
+    });
+
+    setCurrentSection(currentSection || ""); // Mettre à jour l'état
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800 fixed w-full">
+      <Disclosure as="nav" className="fixed w-full">
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-fit bg-gray-800 rounded-full mt-4">
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
-                  </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">{tabsDesktop}</div>
                   </div>

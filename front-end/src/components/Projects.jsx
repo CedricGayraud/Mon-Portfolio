@@ -310,7 +310,7 @@ class ProjectList extends Component {
     }
 
     return (
-      <div id="projects" className="text-center">
+      <div id="projects" className="text-center mb-96">
         <h1 className="text-center text-4xl">Composant projets</h1>
         {projectsHtml}
       </div>

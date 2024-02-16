@@ -105,7 +105,7 @@ class LanguageList extends Component {
       });
     }
     return (
-      <div className="text-center">
+      <div className="text-center mb-96">
         <h1 className="text-center text-4xl">Composant liste des langages</h1>
         {languages}
       </div>

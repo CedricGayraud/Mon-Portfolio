@@ -65,7 +65,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div id="contact" className="bg-gray-100">
+    <section id="contact" className="bg-gray-100 h-screen">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         <div className="relative bg-white shadow-xl">
           <h2 className="sr-only">Contact us</h2>
@@ -426,7 +426,7 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

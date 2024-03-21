@@ -267,55 +267,54 @@ const ProjectForm = () => {
 
 export default ProjectForm;
 
-class ProjectList extends Component {
-  // eslint-disable-next-line no-dupe-class-members
-  state = {
-    projects: [],
-    loading: true,
-  };
+const ProjectList = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  async componentDidMount() {
-    try {
-      const res = await axios.get("http://127.0.0.1:8000/api/projects");
-      //console.log("requete axios :", res);
-      if (res.data.status === 200) {
-        this.setState({
-          projects: res.data["projects "],
-          loading: false,
-        });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://127.0.0.1:8000/api/projects");
+        //console.log("Data received from server:", res.data);
+        if (res.data.status === 200) {
+          //console.log("Projects received from server:", res.data["projects "]);
+          setProjects(res.data["projects "]);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
+    };
 
-  render() {
-    var projectsHtml = "";
-    if (this.state.loading) {
-      projectsHtml = <p>Loading…</p>;
-    } else {
-      //console.log('loading ? : ', this.state.loading);
-      //console.log('projets', this.state.projects);
-      var projectsHtml = this.state.projects.map((item) => {
-        return (
-          <div key={item.id}>
-            <p>{item.id}</p>
-            <p>{item.site_name}</p>
-            <p>{item.site_desc}</p>
-            <p>{item.object}</p>
-            <p>{item.collaborators}</p>
-          </div>
-        );
-      });
-    }
+    fetchData();
 
-    return (
-      <div id="projects" className="text-center mb-96">
-        <h1 className="text-center text-4xl">Composant projets</h1>
-        {projectsHtml}
+    // Clean-up function
+    return () => {
+      // Any clean-up code here if needed
+    };
+  }, []); // Empty dependency array ensures the effect runs only once on component mount
+
+  let projectsHtml = "";
+  if (loading) {
+    projectsHtml = <p>Loading…</p>;
+  } else {
+    projectsHtml = projects.map((item) => (
+      <div key={item.id}>
+        <p>{item.id}</p>
+        <p>{item.site_name}</p>
+        <p>{item.site_desc}</p>
+        <p>{item.object}</p>
+        <p>{item.collaborators}</p>
       </div>
-    );
+    ));
   }
-}
+
+  return (
+    <section id="projects" className="text-center h-screen">
+      <h1 className="text-center text-4xl">Composant projets</h1>
+      {projectsHtml}
+    </section>
+  );
+};
 
 export { ProjectForm, ProjectList };

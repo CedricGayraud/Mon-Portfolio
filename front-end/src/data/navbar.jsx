@@ -1,49 +1,39 @@
 const tabs = [
   {
-    id: "root",
-    label: "root",
-    link: "#root",
-    mobileCss:
-      "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
-    desktopCss:
-      "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
-  },
-  {
     id: "about",
     label: "À propos",
-    link: "#about",
+    key: "#about",
     mobileCss:
       "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
     desktopCss:
-      "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+      "rounded-full px-4 py-3 text-sm font-medium text-gray-300 hover:bg-blanc transition-all duration-200",
   },
   {
     id: "exp",
     label: "Experience",
-    link: "#exp",
+    key: "#exp",
     mobileCss:
       "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
     desktopCss:
-      "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+      "rounded-full px-4 py-3 text-sm font-medium text-gray-300 hover:bg-blanc transition-all duration-200",
   },
   {
     id: "projects",
     label: "Projets",
-    link: "#projects",
+    key: "#projects",
     mobileCss:
       "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
     desktopCss:
-      "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+      "rounded-full px-4 py-3 text-sm font-medium text-gray-300 hover:bg-blanc transition-all duration-200",
   },
   {
     id: "contact",
     label: "Contact",
-    link: "#contact",
+    key: "#contact",
     mobileCss:
       "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
     desktopCss:
-      "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+      "rounded-full px-4 py-3 text-sm font-medium text-gray-300 hover:bg-blanc transition-all duration-200",
   },
 ];
-
 export default tabs;

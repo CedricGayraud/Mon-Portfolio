@@ -7,7 +7,7 @@ import Experiences from "./experiences";
 import { ToastContainer } from "react-toastify";
 function FrontIndex() {
   return (
-    <div>
+    <div className="2xl:px-80 xl:px-72 lg:px-56 md:px-20 sm:px-10 px-6">
       <About />
       <Experiences />
       <LanguageList />

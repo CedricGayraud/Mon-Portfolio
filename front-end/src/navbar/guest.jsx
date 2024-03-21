@@ -9,7 +9,7 @@ import Login from "../components/login";
 function Guest() {
   const [show, setShow] = useState(false);
   const [currentSection, setCurrentSection] = useState("about");
-  const TOP_OFFSET = 50;
+  const TOP_OFFSET = 25;
 
   useEffect(() => {
     const handleScroll = () => {

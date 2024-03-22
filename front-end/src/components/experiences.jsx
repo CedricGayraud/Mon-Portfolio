@@ -1,48 +1,76 @@
-import React from "react";
-import { MdClose, MdOutlineScreenshotMonitor } from "react-icons/md";
-import { GoDash, GoDotFill } from "react-icons/go";
-import { HiOutlineServerStack } from "react-icons/hi2";
-import { AiOutlineShop } from "react-icons/ai";
+import React, { useState } from "react";
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
 function Experiences() {
   return (
-    <section id="exp" className="2xl:mt-32">
-      <div className="rounded-2xl text-blanc">
-        <div className="bg-grisFonce rounded-t-2xl h-10 flex gap-2 items-center">
-          <div className="bg-rouge rounded-full ml-3">
-            <MdClose className="cursor-pointer text-transparent hover:text-grisFonce font-black text-lg" />
-          </div>
-          <div className="bg-jaune rounded-full">
-            <GoDash className="cursor-pointer text-transparent hover:text-grisFonce font-black text-lg" />
-          </div>
-          <div className="cursor-pointer text-transparent hover:text-grisFonce font-black text-lg">
-            <GoDotFill className="bg-grisBtn rounded-full" />
-          </div>
+    <section id="exp" className="2xl:my-32">
+      <h2>Mes expériences</h2>
+      <div className="flex">
+        <div className="w-1/3">
+          <Timeline position="alternate">
+            <TimelineItem>
+              <TimelineOppositeContent color="text.secondary">
+                09:30 am
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Eat</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineOppositeContent color="text.secondary">
+                10:00 am
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Code</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineOppositeContent color="text.secondary">
+                12:00 am
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Sleep</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineOppositeContent color="text.secondary">
+                9:00 am
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Repeat</TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </div>
-        <div className="bg-bleuFonce rounded-b-2xl 2xl:p-6">
-          <h1 className="text-center text-4xl">Ce que je fais</h1>
-          <div className="flex justify-evenly py-4">
-            <div className="">
-              <MdOutlineScreenshotMonitor className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-              <p className="text-center pb-5 font-semibold text-2xl mt-3">
-                FRONT-END
-              </p>
-              <div className="border-b-2 border-blanc w-full px-4"></div>
-            </div>
-            <div className="">
-              <HiOutlineServerStack className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-              <p className="text-center pb-5 font-semibold text-2xl mt-3">
-                BACK-END
-              </p>
-              <div className="border-b-2 border-blanc w-full px-4"></div>
-            </div>
-            <div className="">
-              <AiOutlineShop className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-              <p className="text-center pb-5 font-semibold text-2xl mt-3">
-                CMS
-              </p>
-              <div className="border-b-2 border-blanc w-full px-4"></div>
-            </div>
+        <div className="w-2/3">
+          <h2>Titre poste</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <div className="flex">
+            <p>Langages1</p>
+            <p>Langages2</p>
+            <p>Langages3</p>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ module.exports = {
       blanc: "#FFFFFF",
       rouge: "#ff605c",
       jaune: "#ffbd44",
-      vert: "#00a4e",
+      vert: "#00ca4e",
       transparent: "transparent",
     },
     extend: {},

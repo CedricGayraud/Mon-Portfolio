@@ -4,6 +4,7 @@ import { LanguageList } from "./languages";
 import ContactForm from "./contactForm";
 import About from "./about";
 import Experiences from "./experiences";
+import { JobList } from "./job";
 import { ToastContainer } from "react-toastify";
 function FrontIndex() {
   return (

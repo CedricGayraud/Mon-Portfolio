@@ -108,15 +108,15 @@ function About() {
           >
             {isExpanded && (
               <>
-                <h1 className="text-center text-4xl">Ce que je fais</h1>
+                <h1 className="text-center text-5xl">Ce que je fais</h1>
                 <div className="flex justify-evenly py-12">
-                  <div className="w-1/4">
-                    <MdOutlineScreenshotMonitor className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-                    <p className="text-center pb-5 font-semibold text-2xl mt-3">
+                  <div className="w-1/4 py-5 group hover:bg-bgSite rounded-md transition duration-200">
+                    <MdOutlineScreenshotMonitor className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3 group-hover:text-bgSite group-hover:bg-bleuFonce" />
+                    <p className="text-center pb-5 font-semibold text-2xl mt-3 group-hover:text-bleuFonce">
                       FRONT-END
                     </p>
-                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto"></div>
-                    <p className="text-center py-4 px-6">
+                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto group-hover:border-bleuFonce"></div>
+                    <p className="text-center py-4 px-6 group-hover:text-bleuFonce">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Duis aute irure dolor in reprehenderit in
@@ -125,13 +125,13 @@ function About() {
                     </p>
                   </div>
                   <div className="border h-auto"></div>
-                  <div className="w-1/4">
-                    <HiOutlineServerStack className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-                    <p className="text-center pb-5 font-semibold text-2xl mt-3">
+                  <div className="w-1/4 py-5 group hover:bg-bgSite rounded-md transition duration-200">
+                    <HiOutlineServerStack className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3 group-hover:text-bgSite group-hover:bg-bleuFonce" />
+                    <p className="text-center pb-5 font-semibold text-2xl mt-3 group-hover:text-bleuFonce">
                       BACK-END
                     </p>
-                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto"></div>
-                    <p className="text-center py-4 px-6">
+                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto group-hover:border-bleuFonce"></div>
+                    <p className="text-center py-4 px-6 group-hover:text-bleuFonce">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Duis aute irure dolor in reprehenderit in
@@ -140,13 +140,13 @@ function About() {
                     </p>
                   </div>
                   <div className="border h-auto"></div>
-                  <div className="w-1/4">
-                    <AiOutlineShop className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3" />
-                    <p className="text-center pb-5 font-semibold text-2xl mt-3">
+                  <div className="w-1/4 py-5 group hover:bg-bgSite rounded-md transition duration-200">
+                    <AiOutlineShop className="text-9xl block mx-auto text-bleuFonce bg-blanc rounded-full p-3 group-hover:text-bgSite group-hover:bg-bleuFonce" />
+                    <p className="text-center pb-5 font-semibold text-2xl mt-3 group-hover:text-bleuFonce">
                       CMS
                     </p>
-                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto"></div>
-                    <p className="text-center py-4 px-6">
+                    <div className="border-b-2 border-blanc w-1/2 px-4 mx-auto group-hover:border-bleuFonce"></div>
+                    <p className="text-center py-4 px-6 group-hover:text-bleuFonce">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Duis aute irure dolor in reprehenderit in

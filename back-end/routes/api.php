@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\ProjectController;
+use App\Http\Controllers\API\JobController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\LanguageController;
 use App\Http\Controllers\API\ImageController;
@@ -23,6 +24,9 @@ use Fruitcake\Cors\HandleCors;
 
 Route::get('projects', [ProjectController::class, 'index']);
 Route::post('/add-project', [ProjectController::class, 'store']);
+
+Route::get('jobs', [JobController::class, 'index']);
+Route::post('/add-job', [JobController::class, 'store']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::post('/add-category', [CategoryController::class, 'store']);

@@ -6,22 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Models\ProjectLanguage;
 use Illuminate\Http\Request;
 use App\Models\Project;
-use App\Models\ProjectLanguages;
 use App\Models\Image;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
 {
-    public function index ()
-    {
-        $projects = Project::all();
-        return response()->json([
-            'status' => 200,
-            'projects ' => $projects,
-        ]);
+    public function index()
+{
+    $projects = Project::all();
+    $projectLanguages = [];
+
+    foreach ($projects as $project) {
+        $languages = ProjectLanguage::where('project_id', $project->id)->with('language')->get();
+        // $languages = ProjectLanguage::where('project_id', $project->id)->get()->toArray();
+        $projectLanguages[$project->id] = $languages;
     }
+
+    return response()->json([
+        'status' => 200,
+        'projects' => $projects,
+        'projectLanguages' => $projectLanguages,
+    ]);
+}
+
     public function store(Request $request)
     {
             $request->validate([

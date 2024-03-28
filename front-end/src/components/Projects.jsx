@@ -1,8 +1,8 @@
 /* eslint-disable no-redeclare */
 /* eslint-disable no-unused-vars */
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Select, { components } from "react-select";
+import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import colourOptions from "../data/data";
 import axios from "axios";
@@ -11,7 +11,6 @@ let defaultInput =
   "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer";
 let defaultLabel =
   "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6";
-const animatedComponents = makeAnimated();
 
 const ProjectForm = () => {
   const [formData, setFormData] = useState({
@@ -269,6 +268,7 @@ export default ProjectForm;
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
+  const [projectLanguages, setProjectLanguages] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -278,7 +278,8 @@ const ProjectList = () => {
         //console.log("Data received from server:", res.data);
         if (res.data.status === 200) {
           //console.log("Projects received from server:", res.data["projects "]);
-          setProjects(res.data["projects "]);
+          setProjects(res.data["projects"]);
+          setProjectLanguages(res.data["projectLanguages"]);
           setLoading(false);
         }
       } catch (error) {
@@ -288,23 +289,28 @@ const ProjectList = () => {
 
     fetchData();
 
-    // Clean-up function
-    return () => {
-      // Any clean-up code here if needed
-    };
-  }, []); // Empty dependency array ensures the effect runs only once on component mount
+    return () => {};
+  }, []);
 
   let projectsHtml = "";
   if (loading) {
     projectsHtml = <p>Loading…</p>;
   } else {
-    projectsHtml = projects.map((item) => (
-      <div key={item.id}>
-        <p>{item.id}</p>
-        <p>{item.site_name}</p>
-        <p>{item.site_desc}</p>
-        <p>{item.object}</p>
-        <p>{item.collaborators}</p>
+    projectsHtml = projects.map((project) => (
+      <div key={project.id}>
+        <p>{project.id}</p>
+        <p>{project.site_name}</p>
+        <p>{project.site_desc}</p>
+        <p>{project.object}</p>
+        <p>{project.collaborators}</p>
+        {projectLanguages[project.id].map((projectLanguage, index) => (
+          <div key={index}>
+            <p>{projectLanguage.id}</p>
+            {/* Assurez-vous que language est chargé depuis la relation */}
+            <p>{projectLanguage.language.name}</p>
+            {/* Add more language properties as needed */}
+          </div>
+        ))}
       </div>
     ));
   }
